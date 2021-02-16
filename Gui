@@ -1,0 +1,84 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+    Title = "In Another Time",
+    Style = 3,
+    SizeX = 400,
+    SizeY = 400,
+    Theme = "Dark"
+})
+
+local Page = UI.New({
+    Title = "Stands/Specs"
+})
+
+Page.Button({
+    Text = "Instant Arrow",
+    Callback = function()
+        game:GetService("ReplicatedStorage").ItemGiver.GiveArrow:FireServer()
+    end
+})
+
+Page.Button({
+    Text = "Get Kars",
+    Callback = function()
+        game:GetService("ReplicatedStorage").AbilityGiver.GetKars:FireServer()
+    end
+})
+
+Page.Button({
+    Text = "Get Vamp",
+    Callback = function()
+        game:GetService("ReplicatedStorage").AbilityGiver.GetVamp:FireServer()
+    end
+})
+
+Page.Button({
+    Text = "Get Hamon",
+    Callback = function()
+        game:GetService("ReplicatedStorage").AbilityGiver.GetHamon:FireServer()
+    end
+})
+
+Page.Button({
+    Text = "Check Kars",
+    Callback = function()
+        local Kars = game.Workspace.Values.KarsSpawned
+
+        print(Kars.Value)
+    end
+})
+
+Page.Button({
+    Text = "Check Zeppili",
+    Callback = function()
+        local Zeppili = game.Workspace.Values.ZeppeliSpawned
+
+        print(Zeppili.Value)
+    end
+})
+local Page = UI.New({
+    Title = "Misc"
+})
+
+Page.Slider({
+    Text = "Walk Speed",
+    Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (value)
+
+    end,
+    Min = 16,
+    Max = 100,
+    Def = 16
+})
+
+Page.Button({
+    Text = "Stand Storage",
+    Callback = function()
+        local StandStorage = script.Parent
+
+        script.Parent.Parent.ShopButton.MouseButton1Click:Connect(function()
+            StandStorage.Visible = not StandStorage.Visible
+        end)
+    end
+})
